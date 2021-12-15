@@ -32,13 +32,29 @@ const users = [
 
 
 router.get('/', (req, res) => {
-  // find username
-    // IF NOT, Return
 
-  // check whether the password is matched
+  res.render('login', { enableErrorMessage: false })
+})
 
-  
-  res.render('login')
+
+router.post('/', (req, res) => {
+  const email = req.body.email
+  const password = req.body.password
+
+  const userIndex = users.findIndex(user => email === user.email)
+
+  const enableErrorMessage = userIndex > -1 ?
+    password === users[userIndex].password ? false : true : true
+
+  if (enableErrorMessage) {
+    res.render("login", { enableErrorMessage })
+  } else {
+    res.render("index")
+    res.location("/")
+
+  }
+
+  console.log(email, password, enableErrorMessage)
 })
 
 exports = module.exports = router

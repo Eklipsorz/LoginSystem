@@ -25,6 +25,7 @@
 
   /* box model */
   border: 1px solid #F7C4C1;
+  border-radius: 5px;
   padding: 1%;
 
   /* display */
@@ -39,12 +40,17 @@
 .result-message p {
   /* box model */
   margin-bottom: 0;
-
+  /* font or other */
+  font-size: 14px;
 }
 
 .result-message .delete-message-btn {
+
+  /* box model */
+  border: none;
+
   /* font or other */
   background-color: #FCECEA;
-  border: none;
+  color: #BE3536;
 
 }
