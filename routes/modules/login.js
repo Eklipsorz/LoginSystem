@@ -39,8 +39,8 @@ router.get('/', (req, res) => {
 
 
 router.post('/', (req, res) => {
-  const email = req.body.email
-  const password = req.body.password
+
+  const { email, password } = req.body
 
   const userIndex = users.findIndex(user => email === user.email)
 
@@ -50,12 +50,9 @@ router.post('/', (req, res) => {
   if (enableErrorMessage) {
     res.render("login", { enableErrorMessage })
   } else {
-    res.render("index")
-    res.location("/")
+    res.render("welcome", { firstName: users[userIndex].firstName })
 
   }
-
-  console.log(email, password, enableErrorMessage)
 })
 
 exports = module.exports = router
