@@ -19,3 +19,32 @@
     width: 25%;
   }
 }
+
+
+.result-message {
+
+  /* box model */
+  border: 1px solid #F7C4C1;
+  padding: 1%;
+
+  /* display */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  /* font or other */
+  background-color: #FCECEA;
+}
+
+.result-message p {
+  /* box model */
+  margin-bottom: 0;
+
+}
+
+.result-message .delete-message-btn {
+  /* font or other */
+  background-color: #FCECEA;
+  border: none;
+
+}

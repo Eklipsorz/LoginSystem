@@ -13,7 +13,6 @@ function onLoginFormSubmitted(event) {
 
 function onLoginFormSubmitBtnClicked(event) {
   loginForm.classList.add('was-validated')
-  console.log('hi')
 }
 
 loginForm.addEventListener('submit', onLoginFormSubmitted)
