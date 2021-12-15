@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 // define a port for db server and db name
 const port = 27017
-const dbName = 'loginAuth'
+const dbName = 'accountSystem'
 
 mongoose.connect(`mongodb://localhost:${port}/${dbName}`)
 const db = mongoose.connection
