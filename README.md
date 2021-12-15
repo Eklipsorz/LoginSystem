@@ -16,8 +16,7 @@ A web application is a simple demo of login/logout system. In here, you can logi
 
 ## Requirement
 1. Node.js (v14.18.0 is recommended)
-2. Mongoose (v6.1.2 is recommended)
-3. MongoDB (v4.1.4 is recommended)
+
 
 
 ## Installation
@@ -34,14 +33,6 @@ cd LoginSystem
 3. Install required npm modules
 ```
 npm install
-```
-
-4. open your MongoDB server (port:27017) and create a database called accountSystem
-
-
-5. Go back to restaurantList dir and generate a set of seed data for MongoDB database 
-```
-npm run seed
 ```
 
 ## Quick start
