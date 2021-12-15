@@ -2,7 +2,7 @@ const express = require('express')
 
 const homeRoutes = require('./modules/home')
 const loginRoutes = require('./modules/login')
-const errorRoutes = require('./modules/error')
+
 
 const router = express.Router()
 
