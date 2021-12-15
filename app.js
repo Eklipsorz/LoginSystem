@@ -1,6 +1,7 @@
 // load express and create function from handlebars
 const express = require('express')
 const { create } = require('express-handlebars')
+const router = require('./routes')
 
 const users = [
   {
@@ -55,10 +56,7 @@ app.set('views', process.cwd() + '/views')
 
 app.use('/', express.static('public'))
 
-
-app.get('/', (req, res) => {
-  res.render('index')
-})
+app.use('/', router)
 
 
 app.listen(port, () => {
