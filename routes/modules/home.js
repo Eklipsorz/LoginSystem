@@ -10,8 +10,4 @@ router.get('/', (req, res) => {
 
 })
 
-router.use('/', (req, res) => {
-  res.status(404)
-
-})
 exports = module.exports = router
