@@ -6,7 +6,7 @@ const router = express.Router()
 
 router.get('/', (req, res) => {
   res.render('index')
-  console.log('hi')
+
 })
 
 exports = module.exports = router

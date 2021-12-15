@@ -1,0 +1,24 @@
+<h1>Account Login</h1>
+<form method="POST" action="/login" id="login-form" novalidate>
+
+  <div class="input-group">
+    <input class="form-control" type="text" name="email" placeholder="Email" required>
+    <div class="valid-feedback">
+      輸入正確
+    </div>
+    <div class="invalid-feedback">
+      請輸入電子郵件
+    </div>
+
+
+    <div class="input-group">
+      <input class="form-control" type="password" name="password" placeholder="Password" required>
+      <div class="invalid-feedback">
+        請輸入密碼
+      </div>
+    </div>
+    <button class="btn btn-primary" id="login-form-submit-btn">Sign in</button>
+
+</form>
+
+<script src="/javascripts/login.js"></script>
