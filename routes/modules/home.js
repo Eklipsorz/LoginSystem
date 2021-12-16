@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
   }
   // if a user login successfully, then render a welcome page with account
 
-  // find the user according to the user email and password 
+  // find the user according to the user email 
   accountModel.findOne({ email: req.session.email })
     .lean()
     .then(account => {

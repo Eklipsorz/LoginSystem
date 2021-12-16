@@ -13,25 +13,8 @@ router.get('/', (req, res) => {
     return
   }
 
-  // find the user according to the user email and password 
-  accountModel.findOne({ email: req.session.email })
-    .lean()
-    .then(account => {
+  res.redirect('/')
 
-      // if account exists, then render a index with the account
-      if (account) {
-        res.redirect('/')
-      } else {
-        // if account doesn't exist, then render a login page with a info message
-        const enableInfoMessage = account ? false : true
-        res.render("login", { enableInfoMessage })
-      }
-    })
-    .catch(error => {
-      // if something wrong in the query, then emit an error to error handler
-      error.type = 'CANNOT-FIND-DATA'
-      next(error)
-    })
 
 
 
