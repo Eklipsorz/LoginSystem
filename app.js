@@ -1,9 +1,9 @@
 // load express and create function from handlebars
 const express = require('express')
 const { create } = require('express-handlebars')
+const { notFoundPageHandle, switchErrorHandler } = require('./utils/errorHandler')
 const router = require('./routes')
-
-
+const db = require('./config/mongoose')
 
 
 
@@ -32,8 +32,13 @@ app.use('/', express.static('public'))
 
 app.use('/', express.urlencoded({ extended: true }))
 
-app.use('/', router)
 
+
+app.use('/', router)
+app.use('/', notFoundPageHandle)
+app.use('/', switchErrorHandler)
+//app.use('/', notFoundPageRoute)
+//app.use('/', systemErrorRoute)
 
 app.listen(port, () => {
   console.log(`The express server is running at ${port}`)
