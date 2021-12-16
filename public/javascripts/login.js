@@ -33,4 +33,7 @@ function onDeleteMessageBtnClicked(event) {
 // bind event handler to all three elements
 loginForm.addEventListener('submit', onLoginFormSubmitted)
 loginFormSubmitBtn.addEventListener('click', onLoginFormSubmitBtnClicked)
-deleteMessageBtn.addEventListener('click', onDeleteMessageBtnClicked)
+
+if (deleteMessageBtn) {
+  deleteMessageBtn.addEventListener('click', onDeleteMessageBtnClicked)
+}

@@ -21,16 +21,13 @@ router.post('/', (req, res, next) => {
 
   const { email, password } = req.body
 
-
-  console.log('enter post /login')
-
   accountModel.findOne({ email, password })
     .lean()
     .then(account => {
-      let enableErrorMessage = account ? false : true
+      let enableInfoMessage = account ? false : true
 
-      if (enableErrorMessage) {
-        res.render("login", { enableErrorMessage })
+      if (enableInfoMessage) {
+        res.render("login", { enableInfoMessage })
       } else {
         req.session.user = account.firstName
         res.redirect('/')
@@ -40,7 +37,7 @@ router.post('/', (req, res, next) => {
       error.type = 'CANNOT-FIND-DATA'
       next(error)
     })
-  console.log('end post /login command')
+
   // find user via email
   // const userIndex = users.findIndex(user => email === user.email)
 
