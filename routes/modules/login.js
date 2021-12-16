@@ -22,14 +22,12 @@ router.post('/', (req, res, next) => {
   // Get user email and password
   let { email, password } = req.body
   email = email.trim()
-  console.log(email, password)
 
   // find the user according to the user email and password 
   accountModel.findOne({ email, password })
     .lean()
     .then(account => {
 
-      console.log(account)
 
       // if account exists, then render a index with the account
       if (account) {
