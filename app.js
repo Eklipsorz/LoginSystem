@@ -42,7 +42,7 @@ app.use('/', session({
   // This is the secret used to sign the session ID cookie.
   secret: 'logAuth',
   // The name of the session ID cookie to set in the response 
-  name: 'user',
+  name: 'email',
   // Forces a session that is "uninitialized" to be saved to the store. 
   saveUninitialized: false,
   // Forces the session to be saved back to the session store, even if the session was never modified during the request

@@ -8,11 +8,33 @@ const router = express.Router()
 
 // GET /login: Read login page
 router.get('/', (req, res) => {
-  if (!req.session.user) {
+  if (!req.session.email) {
     res.render('login', { enableErrorMessage: false })
     return
   }
-  res.redirect('/')
+
+  // find the user according to the user email and password 
+  accountModel.findOne({ email: req.session.email })
+    .lean()
+    .then(account => {
+
+      // if account exists, then render a index with the account
+      if (account) {
+        res.redirect('/')
+      } else {
+        // if account doesn't exist, then render a login page with a info message
+        const enableInfoMessage = account ? false : true
+        res.render("login", { enableInfoMessage })
+      }
+    })
+    .catch(error => {
+      // if something wrong in the query, then emit an error to error handler
+      error.type = 'CANNOT-FIND-DATA'
+      next(error)
+    })
+
+
+
 })
 
 
@@ -31,7 +53,7 @@ router.post('/', (req, res, next) => {
 
       // if account exists, then render a index with the account
       if (account) {
-        req.session.user = account.firstName
+        req.session.email = account.email
         res.redirect('/')
       } else {
         // if account doesn't exist, then render a login page with a info message
