@@ -8,7 +8,11 @@ const router = express.Router()
 
 // GET /login: Read login page
 router.get('/', (req, res) => {
-  res.render('login', { enableErrorMessage: false })
+  if (!req.session.user) {
+    res.render('login', { enableErrorMessage: false })
+    return
+  }
+  res.redirect('/')
 })
 
 
@@ -23,13 +27,13 @@ router.post('/', (req, res, next) => {
   accountModel.findOne({ email, password })
     .lean()
     .then(account => {
-      throw new Error('TEST MESSAGE')
       let enableErrorMessage = account ? false : true
 
       if (enableErrorMessage) {
         res.render("login", { enableErrorMessage })
       } else {
-        res.render("welcome", { firstName: account.firstName })
+        req.session.user = account.firstName
+        res.redirect('/')
       }
     })
     .catch(error => {

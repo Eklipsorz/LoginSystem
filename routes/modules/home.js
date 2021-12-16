@@ -5,7 +5,12 @@ const router = express.Router()
 // if user without login, then redirect to log page
 router.get('/', (req, res) => {
 
-  res.redirect('/login')
+  if (!req.session.user) {
+    res.redirect('/login')
+    return
+  }
+  const { user } = req.session
+  res.render('welcome', { user })
 
 })
 
