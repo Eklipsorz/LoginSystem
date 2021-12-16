@@ -5,18 +5,20 @@ A web application is a simple demo of login/logout system. In here, you can logi
 ### Login Page
 ![Login Page](https://res.cloudinary.com/dqfxgtyoi/image/upload/v1639580937/github/loginPage_dbzx6e.png)
 ### Index Page
-![Index Page](https://res.cloudinary.com/dqfxgtyoi/image/upload/v1639580936/github/IndexPage_fntpha.png)
+![Index Page](https://res.cloudinary.com/dqfxgtyoi/image/upload/v1639676967/github/IndexPageV2_rupfej.png)
 
 ## Features
 1. You can login
-2. You can logout (TODO)
+2. You can logout
 3. You can view index
 
 
 
 ## Requirement
 1. Node.js (v14.18.0 is recommended)
-
+2. Mongoose (v6.1.2 is recommended)
+3. MongoDB (v4.1.4 is recommended)
+4. Express-handlebars (v6.0.2 is recommended)
 
 
 ## Installation
@@ -33,6 +35,14 @@ cd LoginSystem
 3. Install required npm modules
 ```
 npm install
+```
+
+4. Open your MongoDB server (port:27017) and create a database called accountSystem
+
+
+5. Go back to LoginSystem dir and generate a set of seed data for MongoDB database
+```
+npm run seed
 ```
 
 ## Quick start

@@ -1,9 +1,14 @@
 // load express and create function from handlebars
 const express = require('express')
-const session = require('express-session')
 const { create } = require('express-handlebars')
+
+// load express-session 
+const session = require('express-session')
+// load error handler for route and a set of routes for valid route
 const { notFoundPageHandle, systemErrorHandler } = require('./utils/errorHandler')
 const router = require('./routes')
+
+// connect to db
 const db = require('./config/mongoose')
 
 
@@ -34,17 +39,22 @@ app.use('/', express.urlencoded({ extended: true }))
 
 
 app.use('/', session({
-  // This is the secret used to sign the session ID cookie. This can be either a string for a single secret, or an array of multiple secrets
+  // This is the secret used to sign the session ID cookie.
   secret: 'logAuth',
-  // The name of the session ID cookie to set in the response (and read from in the request).
+  // The name of the session ID cookie to set in the response 
   name: 'user',
-  // Forces a session that is "uninitialized" to be saved to the store. A session is uninitialized when it is new but not modified
+  // Forces a session that is "uninitialized" to be saved to the store. 
   saveUninitialized: false,
+  // Forces the session to be saved back to the session store, even if the session was never modified during the request
   resave: true,
 }))
 
+// bind a set of routes to all valid routes
 app.use('/', router)
+
+// handling not-found page
 app.use('/', notFoundPageHandle)
+// handling all error in this system
 app.use('/', systemErrorHandler)
 
 app.listen(port, () => {
