@@ -19,41 +19,34 @@ router.get('/', (req, res) => {
 // POST /login: handling account data you input and determine whether a user is allowed 
 router.post('/', (req, res, next) => {
 
-  const { email, password } = req.body
+  // Get user email and password
+  let { email, password } = req.body
+  email = email.trim()
+  console.log(email, password)
 
+  // find the user according to the user email and password 
   accountModel.findOne({ email, password })
     .lean()
     .then(account => {
-      let enableInfoMessage = account ? false : true
 
-      if (enableInfoMessage) {
-        res.render("login", { enableInfoMessage })
-      } else {
+      console.log(account)
+
+      // if account exists, then render a index with the account
+      if (account) {
         req.session.user = account.firstName
         res.redirect('/')
+      } else {
+        // if account doesn't exist, then render a login page with a info message
+        const enableInfoMessage = account ? false : true
+        res.render("login", { enableInfoMessage })
       }
     })
     .catch(error => {
+      // if something wrong in the query, then emit an error to error handler
       error.type = 'CANNOT-FIND-DATA'
       next(error)
     })
 
-  // find user via email
-  // const userIndex = users.findIndex(user => email === user.email)
 
-  // if user's email is not matched, then return false
-  // if user's email is matched, then system check correctness of it's password
-  // if user's email and password are matched, then return true.
-  // Otherwise, it return false
-  // const enableErrorMessage = userIndex > -1 ?
-  //   password === users[userIndex].password ? false : true : true
-
-  // show ErrorMessage or welcome page according to enableErrorMessage (true|false)
-  // if (enableErrorMessage) {
-  //   res.render("login", { enableErrorMessage })
-  // } else {
-  //   res.render("welcome", { firstName: users[userIndex].firstName })
-
-  // }
 })
 exports = module.exports = router
